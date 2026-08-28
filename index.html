@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tài Xỉu Demo</title>
+<title>Nhân Bet 88</title>
 
 <style>
 * {
@@ -15,19 +15,19 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background:
-        radial-gradient(circle at center, #641bd0 0%, #360879 45%, #0c0119 100%);
     color: white;
+    background:
+        radial-gradient(circle at center, #671ed4 0%, #390879 48%, #0b0118 100%);
     overflow-x: hidden;
 }
 
 .header {
     height: 82px;
+    padding: 0 25px;
     display: flex;
     align-items: center;
-    padding: 0 25px;
-    background: rgba(5, 0, 15, 0.97);
-    border-bottom: 1px solid #4b2470;
+    background: rgba(5, 0, 15, .97);
+    border-bottom: 1px solid #4e2674;
 }
 
 .logo {
@@ -36,28 +36,26 @@ body {
     font-size: 30px;
     font-weight: 900;
     color: #ffd52b;
-    text-shadow:
-        0 0 7px white,
-        0 0 18px #ff9d00;
+    text-shadow: 0 0 8px white, 0 0 18px #ff9800;
 }
 
 .logo span {
     display: block;
     color: white;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 5px;
 }
 
 .notice {
     flex: 1;
     text-align: center;
-    color: #a99eaf;
+    color: #aaa0b2;
     font-size: 14px;
     line-height: 1.7;
 }
 
 .notice b {
-    color: #60ed42;
+    color: #59ed43;
 }
 
 .account {
@@ -70,11 +68,11 @@ body {
     width: 48px;
     height: 48px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     border-radius: 50%;
-    background: linear-gradient(145deg, #8248ff, #23004f);
-    border: 2px solid #a47eff;
+    background: linear-gradient(145deg, #844cff, #22004e);
+    border: 2px solid #a77fff;
     box-shadow: 0 0 15px #6325e5;
     font-size: 23px;
 }
@@ -95,10 +93,10 @@ body {
 .balance {
     min-width: 180px;
     height: 47px;
+    padding: 5px 8px;
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 8px;
     border-radius: 30px;
     background: linear-gradient(90deg, #21103d, #4e18a3);
     border: 1px solid #8056df;
@@ -169,7 +167,7 @@ body {
     left: 0;
     right: 0;
     height: 70px;
-    z-index: 50;
+    z-index: 100;
 }
 
 .top-button {
@@ -181,9 +179,7 @@ body {
     background: linear-gradient(#6338ef, #21057e);
     color: white;
     font-size: 28px;
-    box-shadow:
-        0 0 10px #713fff,
-        inset 0 2px 3px rgba(255,255,255,.6);
+    box-shadow: 0 0 10px #713fff;
 }
 
 .question {
@@ -212,15 +208,15 @@ body {
     left: 50%;
     transform: translateX(-50%);
     font-size: 18px;
-    z-index: 20;
+    z-index: 110;
 }
 
 .bet {
     position: absolute;
-    top: 70px;
-    width: 300px;
+    top: 82px;
+    width: 270px;
     text-align: center;
-    z-index: 30;
+    z-index: 40;
 }
 
 .bet-tai {
@@ -232,7 +228,7 @@ body {
 }
 
 .bet-title {
-    font-size: 70px;
+    font-size: 64px;
     line-height: 1;
     font-weight: 1000;
 }
@@ -254,52 +250,19 @@ body {
 }
 
 .players {
-    margin-top: 3px;
+    margin-top: 5px;
     font-size: 16px;
-}
-
-.my-money {
-    margin-top: 10px;
-    color: #ffd52b;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.bet-button {
-    width: 190px;
-    height: 57px;
-    margin-top: 13px;
-    border-radius: 35px;
-    border: 2px solid #82c0ff;
-    background: linear-gradient(#5aa3ff, #1854df 60%, #082a91);
-    color: white;
-    font-size: 25px;
-    font-weight: bold;
-    box-shadow:
-        0 0 10px #318fff,
-        0 0 25px rgba(37,105,255,.55);
-    cursor: pointer;
-}
-
-.bet-button:hover {
-    transform: scale(1.04);
-}
-
-.bet-button:disabled {
-    opacity: .4;
-    cursor: not-allowed;
-    transform: none;
 }
 
 .dish {
     position: absolute;
-    width: 265px;
-    height: 265px;
-    top: 53px;
+    width: 285px;
+    height: 285px;
+    top: 48px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50%;
-    z-index: 25;
+    z-index: 20;
 }
 
 .dish-outer {
@@ -316,8 +279,8 @@ body {
 
 .dish-inner {
     position: absolute;
-    width: 225px;
-    height: 225px;
+    width: 245px;
+    height: 245px;
     top: 20px;
     left: 20px;
     border-radius: 50%;
@@ -328,24 +291,24 @@ body {
 
 .dice-area {
     position: absolute;
-    top: 101px;
+    top: 111px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 15px;
+    gap: 12px;
     z-index: 3;
 }
 
 .dice {
-    width: 62px;
-    height: 62px;
+    width: 65px;
+    height: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 13px;
     background: linear-gradient(145deg,#ffffff,#cfcfcf);
     color: #181818;
-    font-size: 35px;
+    font-size: 37px;
     font-weight: 900;
     border: 3px solid #777;
     box-shadow: 0 5px 10px black;
@@ -353,8 +316,8 @@ body {
 
 .lid {
     position: absolute;
-    width: 245px;
-    height: 245px;
+    width: 265px;
+    height: 265px;
     top: 10px;
     left: 10px;
     border-radius: 50%;
@@ -366,71 +329,65 @@ body {
         0 0 35px #7c32ef,
         inset 0 0 30px #17002e;
     z-index: 5;
-    transition:
-        transform .8s cubic-bezier(.2,.8,.2,1),
-        opacity .4s;
+    transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s;
 }
 
 .lid::before {
     content: "";
     position: absolute;
-    inset: 12px;
+    inset: 13px;
     border-radius: 50%;
     border: 3px dashed rgba(255,255,255,.7);
 }
 
 .lid-handle {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    top: -25px;
+    width: 65px;
+    height: 65px;
+    top: -27px;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 20px;
+    border-radius: 21px;
     background: linear-gradient(#eeeeee,#777777);
     border: 3px solid white;
     box-shadow: 0 0 10px #aaa;
 }
 
-.open .lid {
-    transform: translateY(-155px) rotate(15deg);
-    opacity: 0;
-}
-
 .timer {
     position: absolute;
-    width: 285px;
-    height: 285px;
-    top: 47px;
+    width: 88px;
+    height: 88px;
+    top: 101px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 50%;
-    z-index: 15;
-    pointer-events: none;
-}
-
-.timer-ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 6px solid #9e51ff;
+    background: rgba(7,0,17,.88);
+    border: 4px solid #d1a8ff;
     box-shadow:
-        0 0 15px #a44fff,
-        inset 0 0 15px #7c36e8;
-}
-
-.timer-number {
-    position: absolute;
-    inset: 0;
+        0 0 10px #c26bff,
+        0 0 25px #7925d8,
+        inset 0 0 18px #000;
+    z-index: 8;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 82px;
+}
+
+#timer {
+    font-size: 43px;
     font-weight: 900;
-    color: #edfaff;
+    color: #ffd52b;
     text-shadow:
         0 0 5px white,
-        0 0 20px #48baff;
+        0 0 13px #ff9d00;
+}
+
+.timer.done {
+    border-color: #ff6464;
+}
+
+.timer.done #timer {
+    color: #ff6363;
 }
 
 .status {
@@ -440,25 +397,36 @@ body {
     bottom: 207px;
     color: #ddd2e8;
     font-size: 13px;
-    z-index: 40;
+    z-index: 50;
     white-space: nowrap;
 }
 
-.sound {
+.result {
     position: absolute;
     left: 50%;
-    transform: translateX(110px);
-    bottom: 185px;
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    border: 2px solid #c9baff;
-    background: #10001f;
+    transform: translateX(-50%);
+    top: 337px;
+    z-index: 50;
+    text-align: center;
+    opacity: 0;
+    transition: .4s;
+}
+
+.result.show {
+    opacity: 1;
+}
+
+.result-title {
+    font-size: 30px;
+    font-weight: 900;
+    color: #ffd52b;
+    text-shadow: 0 0 15px #ff9d00;
+}
+
+.result-total {
+    margin-top: 4px;
     color: white;
-    font-size: 24px;
-    box-shadow: 0 0 15px #753dff;
-    z-index: 45;
-    cursor: pointer;
+    font-size: 15px;
 }
 
 .chip-panel {
@@ -483,7 +451,7 @@ body {
         );
     border: 2px solid #8d61e9;
     box-shadow: 0 0 18px rgba(105,42,220,.7);
-    z-index: 45;
+    z-index: 60;
 }
 
 .chip-button {
@@ -491,7 +459,7 @@ body {
     height: 62px;
     border-radius: 50%;
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 900;
     border: 5px dashed rgba(255,255,255,.9);
     cursor: pointer;
@@ -510,11 +478,6 @@ body {
     box-shadow:
         0 0 10px white,
         0 0 22px #ffe65c;
-}
-
-.chip-button:disabled {
-    opacity: .35;
-    cursor: not-allowed;
 }
 
 .chip-1k {
@@ -562,21 +525,16 @@ body {
     box-shadow: 0 0 12px #ffbd20;
 }
 
-.double-button:disabled {
-    opacity: .35;
-    cursor: not-allowed;
-}
-
 .selected-money {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 16px;
+    bottom: 17px;
     min-width: 250px;
     text-align: center;
     color: #cfc2dc;
     font-size: 13px;
-    z-index: 45;
+    z-index: 65;
 }
 
 .selected-money strong {
@@ -598,7 +556,7 @@ body {
     background: linear-gradient(90deg,#18002f,#2c0762);
     border: 3px solid #9f77ff;
     box-shadow: 0 0 15px #6935dc;
-    z-index: 60;
+    z-index: 70;
 }
 
 .history-icon {
@@ -657,7 +615,7 @@ body {
 }
 
 .shaking {
-    animation: shake .12s infinite;
+    animation: shake .11s infinite;
 }
 
 @media(max-width:1050px) {
@@ -724,55 +682,45 @@ body {
         font-size: 10px;
     }
 
-    .my-money {
-        font-size: 14px;
-    }
-
-    .bet-button {
-        width: 100px;
-        height: 42px;
-        font-size: 17px;
-    }
-
     .dish {
-        width: 190px;
-        height: 190px;
-        top: 95px;
+        width: 200px;
+        height: 200px;
+        top: 92px;
     }
 
     .dish-inner {
-        width: 160px;
-        height: 160px;
+        width: 170px;
+        height: 170px;
         top: 15px;
         left: 15px;
     }
 
     .lid {
-        width: 178px;
-        height: 178px;
+        width: 188px;
+        height: 188px;
         top: 6px;
         left: 6px;
     }
 
     .dice-area {
-        top: 72px;
-        gap: 7px;
+        top: 75px;
+        gap: 6px;
     }
 
     .dice {
-        width: 45px;
-        height: 45px;
-        font-size: 25px;
+        width: 47px;
+        height: 47px;
+        font-size: 26px;
     }
 
     .timer {
-        width: 205px;
-        height: 205px;
-        top: 90px;
+        width: 65px;
+        height: 65px;
+        top: 68px;
     }
 
-    .timer-number {
-        font-size: 60px;
+    #timer {
+        font-size: 30px;
     }
 
     .chip-panel {
@@ -808,13 +756,13 @@ body {
 
     <div class="logo">
         TÀI XỈU
-        <span>DEMO GAME</span>
+        <span>Nhân Bet 88</span>
     </div>
 
     <div class="notice">
-        Phiên bản mô phỏng bằng điểm ảo
+        Cược cao thắng lớn!
         <br>
-        <b>Đang mở cửa đặt điểm</b>
+        <b>Đang mở phiên</b>
     </div>
 
     <div class="account">
@@ -822,8 +770,8 @@ body {
         <div class="avatar">👤</div>
 
         <div class="username">
-            <strong>Nhanzdai102</strong>
-            <small>VIP 0</small>
+            <strong>Nhandzai102</strong>
+            <small>VIP 8</small>
         </div>
 
         <div class="balance">
@@ -841,10 +789,15 @@ body {
 <section class="game">
 
     <div class="top-buttons">
+
         <button class="top-button question">?</button>
+
         <button class="top-button trophy">🏆</button>
+
         <button class="top-button history-button">↶</button>
+
         <button class="top-button close">×</button>
+
     </div>
 
     <div class="round">
@@ -859,17 +812,6 @@ body {
             👤 1 người chơi
         </div>
 
-        <div class="my-money" id="taiAmount">
-            0
-        </div>
-
-        <button
-            class="bet-button"
-            id="taiButton"
-            onclick="placeBet('tai')">
-            ĐẶT
-        </button>
-
     </div>
 
     <div class="bet bet-xiu">
@@ -880,17 +822,6 @@ body {
             👤 1 người chơi
         </div>
 
-        <div class="my-money" id="xiuAmount">
-            0
-        </div>
-
-        <button
-            class="bet-button"
-            id="xiuButton"
-            onclick="placeBet('xiu')">
-            ĐẶT
-        </button>
-
     </div>
 
     <div class="dish" id="dish">
@@ -899,11 +830,19 @@ body {
 
         <div class="dish-inner"></div>
 
-        <div class="dice-area" id="diceArea">
+        <div class="dice-area">
 
             <div class="dice" id="dice1">⚀</div>
+
             <div class="dice" id="dice2">⚀</div>
+
             <div class="dice" id="dice3">⚀</div>
+
+        </div>
+
+        <div class="timer" id="timerBox">
+
+            <div id="timer">30</div>
 
         </div>
 
@@ -915,91 +854,64 @@ body {
 
     </div>
 
-    <div class="timer">
+    <div class="result" id="result">
 
-        <div class="timer-ring"></div>
+        <div class="result-title" id="resultTitle">
+            TÀI
+        </div>
 
-        <div
-            class="timer-number"
-            id="timer">
-            30
+        <div class="result-total" id="resultTotal">
+            Tổng: 0
         </div>
 
     </div>
 
-    <button
-        class="sound"
-        id="soundButton"
-        onclick="toggleSound()">
-        🔇
-    </button>
-
-    <div
-        class="status"
-        id="status">
-        Chọn chip rồi đặt vào TÀI hoặc XỈU.
+    <div class="status" id="status">
+        Chọn chip.
     </div>
 
     <div class="chip-panel">
 
-        <button
-            class="chip-button chip-1k"
-            onclick="addChip(1000,this)">
+        <button class="chip-button chip-1k" onclick="addChip(1000,this)">
             1K
         </button>
 
-        <button
-            class="chip-button chip-5k"
-            onclick="addChip(5000,this)">
+        <button class="chip-button chip-5k" onclick="addChip(5000,this)">
             5K
         </button>
 
-        <button
-            class="chip-button chip-10k"
-            onclick="addChip(10000,this)">
+        <button class="chip-button chip-10k" onclick="addChip(10000,this)">
             10K
         </button>
 
-        <button
-            class="chip-button chip-50k"
-            onclick="addChip(50000,this)">
+        <button class="chip-button chip-50k" onclick="addChip(50000,this)">
             50K
         </button>
 
-        <button
-            class="chip-button chip-100k"
-            onclick="addChip(100000,this)">
+        <button class="chip-button chip-100k" onclick="addChip(100000,this)">
             100K
         </button>
 
-        <button
-            class="chip-button chip-200k"
-            onclick="addChip(200000,this)">
+        <button class="chip-button chip-200k" onclick="addChip(200000,this)">
             200K
         </button>
 
-        <button
-            class="chip-button chip-500k"
-            onclick="addChip(500000,this)">
+        <button class="chip-button chip-500k" onclick="addChip(500000,this)">
             500K
         </button>
 
-        <button
-            class="chip-button chip-1m"
-            onclick="addChip(1000000,this)">
+        <button class="chip-button chip-1m" onclick="addChip(1000000,this)">
             1M
         </button>
 
-        <button
-            class="double-button"
-            onclick="doubleChip()">
+        <button class="double-button" onclick="doubleChip()">
             ×2
         </button>
 
     </div>
 
     <div class="selected-money">
-        Đang chọn:
+        Chip đang chọn:
         <strong id="selectedAmount">0</strong>
     </div>
 
@@ -1024,19 +936,16 @@ body {
 <script>
 
 let balance = 1000000;
-let selectedAmount = 0;
-let taiAmount = 0;
-let xiuAmount = 0;
 
-let currentBetSide = null;
+let selectedAmount = 0;
 
 let round = 2340960;
+
 let time = 30;
 
-let gameRunning = true;
-let soundOn = false;
-
 let timerInterval = null;
+
+let gameRunning = true;
 
 const balanceElement =
     document.getElementById("balance");
@@ -1044,14 +953,11 @@ const balanceElement =
 const selectedElement =
     document.getElementById("selectedAmount");
 
-const taiElement =
-    document.getElementById("taiAmount");
-
-const xiuElement =
-    document.getElementById("xiuAmount");
-
 const timerElement =
     document.getElementById("timer");
+
+const timerBox =
+    document.getElementById("timerBox");
 
 const roundElement =
     document.getElementById("round");
@@ -1062,17 +968,14 @@ const statusElement =
 const dish =
     document.getElementById("dish");
 
-const taiButton =
-    document.getElementById("taiButton");
+const result =
+    document.getElementById("result");
 
-const xiuButton =
-    document.getElementById("xiuButton");
+const resultTitle =
+    document.getElementById("resultTitle");
 
-const doubleButton =
-    document.querySelector(".double-button");
-
-const chipButtons =
-    document.querySelectorAll(".chip-button");
+const resultTotal =
+    document.getElementById("resultTotal");
 
 const diceElements = [
     document.getElementById("dice1"),
@@ -1119,41 +1022,6 @@ function updateUI() {
 
     selectedElement.textContent =
         formatNumber(selectedAmount);
-
-    taiElement.textContent =
-        formatNumber(taiAmount);
-
-    xiuElement.textContent =
-        formatNumber(xiuAmount);
-
-    updateBetButtons();
-}
-
-function updateBetButtons() {
-
-    if (!gameRunning) {
-
-        taiButton.disabled = true;
-        xiuButton.disabled = true;
-
-        return;
-    }
-
-    if (currentBetSide === "tai") {
-
-        taiButton.disabled = false;
-        xiuButton.disabled = true;
-
-    } else if (currentBetSide === "xiu") {
-
-        taiButton.disabled = true;
-        xiuButton.disabled = false;
-
-    } else {
-
-        taiButton.disabled = false;
-        xiuButton.disabled = false;
-    }
 }
 
 function addChip(amount, button) {
@@ -1161,7 +1029,7 @@ function addChip(amount, button) {
     if (!gameRunning) {
 
         statusElement.textContent =
-            "Đã hết thời gian đặt điểm.";
+            "Đã hết thời gian.";
 
         return;
     }
@@ -1169,7 +1037,7 @@ function addChip(amount, button) {
     if (selectedAmount + amount > balance) {
 
         statusElement.textContent =
-            "Không đủ điểm trong balance.";
+            "Không đủ chip.";
 
         return;
     }
@@ -1178,7 +1046,7 @@ function addChip(amount, button) {
 
     document
         .querySelectorAll(".chip-button")
-        .forEach(chip => {
+        .forEach(function(chip) {
             chip.classList.remove("selected");
         });
 
@@ -1187,7 +1055,7 @@ function addChip(amount, button) {
     statusElement.textContent =
         "Đang chọn " +
         formatNumber(selectedAmount) +
-        " điểm.";
+        " chip.";
 
     updateUI();
 }
@@ -1196,13 +1064,10 @@ function doubleChip() {
 
     if (!gameRunning) {
 
-        statusElement.textContent =
-            "Đã hết thời gian đặt điểm.";
-
         return;
     }
 
-    if (selectedAmount <= 0) {
+    if (selectedAmount === 0) {
 
         statusElement.textContent =
             "Bạn chưa chọn chip.";
@@ -1213,7 +1078,7 @@ function doubleChip() {
     if (selectedAmount * 2 > balance) {
 
         statusElement.textContent =
-            "Không đủ điểm để ×2.";
+            "Không đủ chip để ×2.";
 
         return;
     }
@@ -1221,82 +1086,8 @@ function doubleChip() {
     selectedAmount *= 2;
 
     statusElement.textContent =
-        "Đã ×2 thành " +
-        formatNumber(selectedAmount) +
-        " điểm.";
-
-    updateUI();
-}
-
-function placeBet(side) {
-
-    if (!gameRunning) {
-
-        statusElement.textContent =
-            "Đã hết thời gian đặt điểm.";
-
-        return;
-    }
-
-    if (selectedAmount <= 0) {
-
-        statusElement.textContent =
-            "Bạn chưa chọn chip.";
-
-        return;
-    }
-
-    if (selectedAmount > balance) {
-
-        statusElement.textContent =
-            "Không đủ điểm.";
-
-        return;
-    }
-
-    if (
-        currentBetSide !== null &&
-        currentBetSide !== side
-    ) {
-
-        statusElement.textContent =
-            "Mỗi lượt chỉ được đặt một cửa.";
-
-        return;
-    }
-
-    balance -= selectedAmount;
-
-    if (side === "tai") {
-
-        taiAmount += selectedAmount;
-
-        currentBetSide = "tai";
-
-        statusElement.textContent =
-            "Đã đặt " +
-            formatNumber(selectedAmount) +
-            " điểm vào TÀI.";
-
-    } else {
-
-        xiuAmount += selectedAmount;
-
-        currentBetSide = "xiu";
-
-        statusElement.textContent =
-            "Đã đặt " +
-            formatNumber(selectedAmount) +
-            " điểm vào XỈU.";
-    }
-
-    selectedAmount = 0;
-
-    document
-        .querySelectorAll(".chip-button")
-        .forEach(chip => {
-            chip.classList.remove("selected");
-        });
+        "Chip đang chọn: " +
+        formatNumber(selectedAmount);
 
     updateUI();
 }
@@ -1308,34 +1099,103 @@ function randomDice() {
     ) + 1;
 }
 
+function startTimer() {
+
+    clearInterval(timerInterval);
+
+    time = 30;
+
+    gameRunning = true;
+
+    selectedAmount = 0;
+
+    timerBox.classList.remove("done");
+
+    timerElement.textContent =
+        time;
+
+    result.classList.remove("show");
+
+    dish.classList.remove("open");
+
+    updateUI();
+
+    statusElement.textContent =
+        "Chọn chip để mô phỏng.";
+
+    timerInterval =
+        setInterval(function() {
+
+            time--;
+
+            timerElement.textContent =
+                time;
+
+            if (time <= 0) {
+
+                clearInterval(timerInterval);
+
+                time = 0;
+
+                timerElement.textContent =
+                    "0";
+
+                timerBox.classList.add("done");
+
+                gameRunning = false;
+
+                selectedAmount = 0;
+
+                document
+                    .querySelectorAll(".chip-button")
+                    .forEach(function(chip) {
+                        chip.classList.remove("selected");
+                    });
+
+                updateUI();
+
+                statusElement.textContent =
+                    "Hết giờ! Đang lắc xúc xắc...";
+
+                shakeDice();
+            }
+
+        }, 1000);
+}
+
 function shakeDice() {
 
-    diceElements.forEach(dice => {
+    diceElements.forEach(function(dice) {
+
         dice.classList.add("shaking");
+
     });
 
     let count = 0;
 
-    const animation =
-        setInterval(() => {
+    const shakeInterval =
+        setInterval(function() {
 
-            diceElements.forEach(dice => {
+            diceElements.forEach(function(dice) {
 
                 const value =
                     randomDice();
 
                 dice.textContent =
                     diceFaces[value - 1];
+
             });
 
             count++;
 
             if (count >= 25) {
 
-                clearInterval(animation);
+                clearInterval(shakeInterval);
 
-                diceElements.forEach(dice => {
+                diceElements.forEach(function(dice) {
+
                     dice.classList.remove("shaking");
+
                 });
 
                 showResult();
@@ -1353,12 +1213,13 @@ function showResult() {
     ];
 
     diceElements.forEach(
-        (dice, index) => {
+        function(dice,index) {
 
             dice.textContent =
                 diceFaces[
                     values[index] - 1
                 ];
+
         }
     );
 
@@ -1367,96 +1228,37 @@ function showResult() {
         values[1] +
         values[2];
 
-    const result =
+    const resultText =
         total >= 11
             ? "TÀI"
             : "XỈU";
 
     dish.classList.add("open");
 
+    resultTitle.textContent =
+        resultText;
+
+    resultTotal.textContent =
+        "Tổng: " + total;
+
+    result.classList.add("show");
+
     statusElement.textContent =
         "Kết quả: " +
-        result +
-        " - Tổng " +
+        resultText +
+        " • Tổng " +
         total;
 
-    addHistory(result);
+    addHistory(resultText);
 
-    setTimeout(() => {
+    setTimeout(function() {
 
         newRound();
 
     }, 3500);
 }
 
-function startTimer() {
-
-    clearInterval(timerInterval);
-
-    time = 30;
-
-    gameRunning = true;
-
-    currentBetSide = null;
-
-    taiAmount = 0;
-    xiuAmount = 0;
-    selectedAmount = 0;
-
-    dish.classList.remove("open");
-
-    timerElement.textContent =
-        time;
-
-    updateUI();
-
-    statusElement.textContent =
-        "Chọn chip rồi đặt vào TÀI hoặc XỈU.";
-
-    timerInterval =
-        setInterval(() => {
-
-            time--;
-
-            timerElement.textContent =
-                time;
-
-            if (time <= 0) {
-
-                clearInterval(timerInterval);
-
-                gameRunning = false;
-
-                selectedAmount = 0;
-
-                document
-                    .querySelectorAll(".chip-button")
-                    .forEach(chip => {
-                        chip.classList.remove("selected");
-                    });
-
-                updateUI();
-
-                statusElement.textContent =
-                    "Hết giờ! Đang lắc xúc xắc...";
-
-                shakeDice();
-            }
-
-        }, 1000);
-}
-
-function newRound() {
-
-    round++;
-
-    roundElement.textContent =
-        round;
-
-    startTimer();
-}
-
-function addHistory(result) {
+function addHistory(resultText) {
 
     const history =
         document.getElementById("history");
@@ -1467,7 +1269,7 @@ function addHistory(result) {
     dot.className =
         "history-dot " +
         (
-            result === "TÀI"
+            resultText === "TÀI"
                 ? "tai"
                 : "xiu"
         );
@@ -1480,20 +1282,20 @@ function addHistory(result) {
         );
 
     if (dots.length > 10) {
+
         dots[0].remove();
+
     }
 }
 
-function toggleSound() {
+function newRound() {
 
-    soundOn = !soundOn;
+    round++;
 
-    document.getElementById(
-        "soundButton"
-    ).textContent =
-        soundOn
-            ? "🔊"
-            : "🔇";
+    roundElement.textContent =
+        round;
+
+    startTimer();
 }
 
 updateUI();
