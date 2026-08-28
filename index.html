@@ -263,6 +263,35 @@
   }
   .deposit-btn small{display:block;font-size:10px;color:#5a1010;}
 
+  .deposit-overlay{
+    display:none;position:fixed;inset:0;z-index:50;
+    background:rgba(5,3,20,0.72);
+    align-items:center;justify-content:center;padding:16px;
+  }
+  .deposit-overlay.active{display:flex;}
+  .deposit-modal{
+    width:100%;max-width:420px;
+    background:linear-gradient(180deg,var(--bg-panel-1),var(--bg-panel-2));
+    border:2px solid #4a3fc0;border-radius:22px;padding:18px 18px 22px;
+    box-shadow:0 0 40px rgba(123,92,255,0.5);
+  }
+  .deposit-modal-head{
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:15px;font-weight:900;color:var(--gold);margin-bottom:6px;
+  }
+  .deposit-sub{ font-size:12px;color:var(--text-soft);margin-bottom:14px; }
+  .deposit-grid{ display:grid;grid-template-columns:repeat(2,1fr);gap:10px; }
+  .deposit-option{
+    background:linear-gradient(180deg,#2a1f88,#160f4a);
+    border:1px solid #5a4be0;border-radius:14px;
+    padding:12px 8px;text-align:center;cursor:pointer;
+    transition:transform .12s;
+  }
+  .deposit-option:hover{transform:translateY(-3px);border-color:var(--gold);}
+  .deposit-option .amt{ font-size:15px;font-weight:900;color:#fff; }
+  .deposit-option .bonus{ font-size:11px;color:var(--gold);margin-top:4px;font-weight:700; }
+  .deposit-msg{ text-align:center;margin-top:14px;font-size:13px;font-weight:700;color:#4be07a;min-height:18px; }
+
   @media(max-width:480px){
     .side-title{font-size:24px;}
     .bowl-visual{width:72px;height:72px;}
@@ -277,12 +306,12 @@
 
   <div class="topbar">
     <div class="logo-box">TÀI XỈU<br>ONLINE</div>
-    <div class="banner-text">Nhan88 - Cổng Game Đổi Thưởng Uy Tín<br><span>Bodzai1103 tháng này đã thắng 4.000.000</span></div>
+    <div class="banner-text">Nhan88 - Cổng Game Đổi Thưởng Uy Tín<br><span>Nhandzai102 tháng này đã thắng 4.000.000</span></div>
     <div class="user-box">
       <div class="avatar">N</div>
       <div>
         <div>Nhandzai102</div>
-        <div class="vip">VIP 8</div>
+        <div class="vip">VIP 0</div>
       </div>
     </div>
     <div class="coin-box"><div class="coin-dot"></div><span id="balanceDisplay">1,000,000</span><span style="font-size:16px;cursor:pointer;">+</span></div>
@@ -354,7 +383,19 @@
   <div class="pending-line" id="pendingLine"></div>
 
   <div class="deposit-fab">
-    <button class="deposit-btn">NẠP TIỀN<small>+150%</small></button>
+    <button class="deposit-btn" id="btnOpenDeposit">NẠP TIỀN<small>+150%</small></button>
+  </div>
+</div>
+
+<div class="deposit-overlay" id="depositOverlay">
+  <div class="deposit-modal">
+    <div class="deposit-modal-head">
+      <span>NẠP CHIP ẢO</span>
+      <div class="float-icon close" id="btnCloseDeposit" style="position:static;">✕</div>
+    </div>
+    <div class="deposit-sub">Chọn mức nạp bên dưới, khuyến mãi +150% áp dụng ngay</div>
+    <div class="deposit-grid" id="depositGrid"></div>
+    <div class="deposit-msg" id="depositMsg"></div>
   </div>
 </div>
 
@@ -416,7 +457,7 @@ function placeBet(side){
   if(state.locked || state.rolling) return;
   if(state.pending <= 0){ setStatus('Hãy chọn chip trước'); return; }
   if(state.myBet.side && state.myBet.side !== side){
-    setStatus('Mỗi lượt chỉ được đặt một cửa'); return;
+    setStatus('Một lượt chỉ được đặt một cửa'); return;
   }
   if(state.pending > state.balance){ setStatus('Số dư không đủ'); return; }
   state.balance -= state.pending;
@@ -446,7 +487,7 @@ function betAgain(){
   if(!state.lastBet){ setStatus('Chưa có cược trước đó'); return; }
   if(state.lastBet.amount > state.balance){ setStatus('Số dư không đủ'); return; }
   if(state.myBet.side && state.myBet.side !== state.lastBet.side){
-    setStatus('Mỗi lượt chỉ được đặt một cửa'); return;
+    setStatus('Một lượt chỉ được đặt một cửa'); return;
   }
   state.balance -= state.lastBet.amount;
   state.myBet.side = state.lastBet.side;
@@ -595,14 +636,60 @@ function startNewRound(){
   renderAll();
 }
 
+var depositTiers = [10000,20000,50000,100000,1000000,2000000,5000000];
+var depositBonusRate = 1.5;
+
+function fmtShort(v){
+  if(v >= 1000000) return (v/1000000) + 'M';
+  if(v >= 1000) return (v/1000) + 'K';
+  return String(v);
+}
+
+function renderDepositOptions(){
+  var grid = document.getElementById('depositGrid');
+  grid.innerHTML = '';
+  depositTiers.forEach(function(v){
+    var el = document.createElement('div');
+    el.className = 'deposit-option';
+    var bonus = Math.round(v * depositBonusRate);
+    var total = v + bonus;
+    el.innerHTML = '<div class="amt">' + fmt(v) + '</div><div class="bonus">+150% → ' + fmt(total) + '</div>';
+    el.onclick = function(){ doDeposit(v); };
+    grid.appendChild(el);
+  });
+}
+
+function openDeposit(){
+  document.getElementById('depositMsg').textContent = '';
+  document.getElementById('depositOverlay').classList.add('active');
+}
+
+function closeDeposit(){
+  document.getElementById('depositOverlay').classList.remove('active');
+}
+
+function doDeposit(v){
+  var bonus = Math.round(v * depositBonusRate);
+  var total = v + bonus;
+  state.balance += total;
+  document.getElementById('depositMsg').textContent = 'Nạp thành công ' + fmt(v) + ' + KM ' + fmt(bonus) + ' = ' + fmt(total);
+  renderAll();
+}
+
 document.getElementById('btnTai').onclick = function(){ placeBet('tai'); };
 document.getElementById('btnXiu').onclick = function(){ placeBet('xiu'); };
 document.getElementById('btnX2').onclick = doubleChip;
 document.getElementById('btnAllIn').onclick = allIn;
 document.getElementById('btnNext').onclick = betAgain;
 document.getElementById('btnCancel').onclick = cancelPending;
+document.getElementById('btnOpenDeposit').onclick = openDeposit;
+document.getElementById('btnCloseDeposit').onclick = closeDeposit;
+document.getElementById('depositOverlay').onclick = function(e){
+  if(e.target.id === 'depositOverlay') closeDeposit();
+};
 
 renderChips();
+renderDepositOptions();
 renderAll();
 setLockedUI(false);
 setInterval(tick, 1000);
