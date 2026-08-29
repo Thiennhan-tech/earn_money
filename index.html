@@ -364,6 +364,7 @@
   .card.red{color:#c21030;}
   .card.back{ background:linear-gradient(150deg,#1fae62,#0a4e2c);
     border:2px solid #6bffb0;color:transparent; }
+  .card.third{ margin-top:-16px;transform:rotate(6deg); }
   .hand-total{ font-size:24px;font-weight:900;color:var(--gold);text-shadow:0 0 14px var(--gold-2);margin-top:8px; }
   .page-baccarat .hand-total{ color:#7dffb0;text-shadow:0 0 14px #2fdc7c; }
 
@@ -398,7 +399,7 @@
 
 <div class="auth-wrap" id="authScreen">
   <div class="auth-card">
-    <div class="auth-logo">HAYWIN CASINO</div>
+    <div class="auth-logo">NHAN88 CASINO</div>
     <div class="auth-sub">Đăng nhập hoặc tạo tài khoản demo để chơi</div>
     <div class="auth-tabs">
       <div class="auth-tab active" id="tabLogin">ĐĂNG NHẬP</div>
@@ -447,7 +448,7 @@
       <div class="avatar" id="userAvatar">N</div>
       <div>
         <div id="userName">Nhandzai102</div>
-        <div class="vip">VIP 10</div>
+        <div class="vip">VIP 0</div>
       </div>
     </div>
     <div class="coin-box"><div class="coin-dot"></div><span id="balanceDisplay">1,000,000</span></div>
@@ -601,13 +602,24 @@
 var accounts = {};
 var currentUser = null;
 
+function saveAccounts(){
+  try{ localStorage.setItem('haywin_casino_accounts', JSON.stringify(accounts)); }catch(e){}
+}
+function loadAccounts(){
+  try{
+    var raw = localStorage.getItem('haywin_casino_accounts');
+    if(raw) accounts = JSON.parse(raw);
+  }catch(e){}
+}
+loadAccounts();
+
 function fmt(n){
   return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function getBalance(){ return accounts[currentUser].balance; }
-function addBalance(v){ accounts[currentUser].balance += v; updateBalanceDisplay(); }
-function spendBalance(v){ accounts[currentUser].balance -= v; updateBalanceDisplay(); }
+function addBalance(v){ accounts[currentUser].balance += v; updateBalanceDisplay(); saveAccounts(); }
+function spendBalance(v){ accounts[currentUser].balance -= v; updateBalanceDisplay(); saveAccounts(); }
 
 function updateBalanceDisplay(){
   document.getElementById('balanceDisplay').textContent = fmt(getBalance());
@@ -643,6 +655,7 @@ document.getElementById('btnRegisterSubmit').onclick = function(){
   if(p.length < 8){ showAuthMsg('Mật khẩu phải có ít nhất 8 ký tự'); return; }
   if(p !== p2){ showAuthMsg('Mật khẩu nhập lại không khớp'); return; }
   accounts[u] = { password: p, balance: 1000000 };
+  saveAccounts();
   showAuthMsg('Tạo tài khoản thành công! Đang đăng nhập...', true);
   setTimeout(function(){ loginAs(u); }, 500);
 };
@@ -781,8 +794,16 @@ function txBetAgain(){
 function txAllIn(){
   if(tx.locked || tx.rolling) return;
   if(getBalance() <= 0){ txSetStatus('Số dư của bạn đã hết'); return; }
-  tx.pending = getBalance(); txUpdatePendingLine();
-  txSetStatus('ALL IN! Chọn TÀI hoặc XỈU để vào cược toàn bộ ' + fmt(tx.pending));
+  if(tx.myBet.side){
+    var stake = getBalance();
+    spendBalance(stake);
+    tx.myBet.amount += stake;
+    txSetStatus('ALL IN! Đã dồn toàn bộ ' + fmt(stake) + ' vào ' + (tx.myBet.side==='tai'?'TÀI':'XỈU'));
+    txRenderAll();
+  } else {
+    tx.pending = getBalance(); txUpdatePendingLine();
+    txSetStatus('ALL IN! Chọn TÀI hoặc XỈU để vào cược toàn bộ ' + fmt(tx.pending));
+  }
 }
 function txDoubleChip(){
   if(tx.locked || tx.rolling) return;
@@ -933,7 +954,6 @@ function bcPlaceBet(side){
   if(bc.locked || bc.rolling) return;
   if(bc.pending <= 0){ bcSetStatus('Hãy chọn chip trước'); return; }
   if(bc.pending < bcMinChip){ bcSetStatus('Mức cược tối thiểu là ' + fmt(bcMinChip)); return; }
-  if(bc.pending > bcMaxChip){ bcSetStatus('Mức cược tối đa là ' + fmt(bcMaxChip)); return; }
   if(bc.myBet.side && bc.myBet.side !== side){ bcSetStatus('Một lượt chỉ được đặt một cửa'); return; }
   if(bc.pending > getBalance()){ bcSetStatus('Số dư không đủ'); return; }
   spendBalance(bc.pending);
@@ -957,16 +977,23 @@ function bcBetAgain(){
 function bcAllIn(){
   if(bc.locked || bc.rolling) return;
   if(getBalance() <= 0){ bcSetStatus('Số dư của bạn đã hết'); return; }
-  var stake = Math.min(getBalance(), bcMaxChip);
-  if(stake < bcMinChip){ bcSetStatus('Số dư không đủ mức tối thiểu ' + fmt(bcMinChip)); return; }
-  bc.pending = stake; bcUpdatePendingLine();
-  bcSetStatus('ALL IN! Chọn Player, Banker hoặc Tie để vào cược ' + fmt(stake));
+  if(bc.myBet.side){
+    var stakeNow = getBalance();
+    spendBalance(stakeNow);
+    bc.myBet.amount += stakeNow;
+    bcSetStatus('ALL IN! Đã dồn toàn bộ ' + fmt(stakeNow) + ' vào ' + bc.myBet.side.toUpperCase());
+    bcRenderAll();
+  } else {
+    var stake = getBalance();
+    if(stake < bcMinChip){ bcSetStatus('Số dư không đủ mức tối thiểu ' + fmt(bcMinChip)); return; }
+    bc.pending = stake; bcUpdatePendingLine();
+    bcSetStatus('ALL IN! Chọn Player, Banker hoặc Tie để vào cược toàn bộ ' + fmt(stake));
+  }
 }
 function bcDoubleChip(){
   if(bc.locked || bc.rolling) return;
   if(bc.pending <= 0){ bcSetStatus('Chưa chọn chip'); return; }
   if(bc.pending*2 > getBalance()){ bcSetStatus('Số dư không đủ'); return; }
-  if(bc.pending*2 > bcMaxChip){ bcSetStatus('Mức cược tối đa là ' + fmt(bcMaxChip)); return; }
   bc.pending *= 2; bcUpdatePendingLine();
 }
 function bcRenderAll(){
@@ -1006,26 +1033,41 @@ function bcTick(){
     if(bc.timer === 0) bcLockAndDeal();
   }
 }
-function makeBackCard(){
+function makeBackCard(isThird){
   var el = document.createElement('div');
-  el.className = 'card back';
+  el.className = 'card back' + (isThird ? ' third' : '');
   el.textContent = '🂠';
   return el;
 }
 function flipCard(el, card){
-  el.style.transform = 'scaleX(0)';
+  var isThird = el.classList.contains('third');
+  var restRotate = isThird ? ' rotate(6deg)' : '';
+  el.style.transform = 'scaleX(0)' + restRotate;
   setTimeout(function(){
-    el.className = 'card' + (card.red ? ' red' : '');
+    el.className = 'card' + (card.red ? ' red' : '') + (isThird ? ' third' : '');
     el.textContent = card.rank + card.suit;
-    el.style.transform = 'scaleX(1)';
+    el.style.transform = 'scaleX(1)' + restRotate;
+  }, 150);
+}
+function bcFlipAllDown(callback){
+  var allCardEls = document.querySelectorAll('#playerCards .card, #bankerCards .card');
+  if(allCardEls.length === 0){ callback(); return; }
+  allCardEls.forEach(function(el){
+    var isThird = el.classList.contains('third');
+    el.style.transform = 'scaleX(0)' + (isThird ? ' rotate(6deg)' : '');
+  });
+  setTimeout(function(){
+    allCardEls.forEach(function(el){
+      var isThird = el.classList.contains('third');
+      el.className = 'card back' + (isThird ? ' third' : '');
+      el.textContent = '🂠';
+      el.style.transform = 'scaleX(1)' + (isThird ? ' rotate(6deg)' : '');
+    });
+    setTimeout(callback, 450);
   }, 150);
 }
 function bcLockAndDeal(){
   bc.locked = true; bc.rolling = true; bcSetLockedUI(true); bcRenderAll();
-  document.getElementById('playerCards').innerHTML = '';
-  document.getElementById('bankerCards').innerHTML = '';
-  document.getElementById('playerTotal').textContent = '-';
-  document.getElementById('bankerTotal').textContent = '-';
   setTimeout(bcDealRound, 500);
 }
 function bcDealRound(){
@@ -1058,7 +1100,7 @@ function bcDealRound(){
     if(pTotal <= 5){
       playerThirdCard = drawCard();
       player.push(playerThirdCard);
-      var pEl3 = makeBackCard();
+      var pEl3 = makeBackCard(true);
       document.getElementById('playerCards').appendChild(pEl3);
       setTimeout(function(){
         flipCard(pEl3, playerThirdCard);
@@ -1081,7 +1123,7 @@ function bcDealRound(){
       if(bankerDraws){
         var bankerThird = drawCard();
         banker.push(bankerThird);
-        var bEl3 = makeBackCard();
+        var bEl3 = makeBackCard(true);
         document.getElementById('bankerCards').appendChild(bEl3);
         setTimeout(function(){
           flipCard(bEl3, bankerThird);
@@ -1125,11 +1167,19 @@ function bcSettleRound(outcome, pFinal, bFinal){
   bc.history.push(code);
   if(bc.history.length>50) bc.history.shift();
   bcRenderAll();
-  setTimeout(bcStartNewRound, 3000);
+  setTimeout(function(){
+    bcFlipAllDown(function(){
+      setTimeout(bcStartNewRound, 500);
+    });
+  }, 2600);
 }
 function bcStartNewRound(){
   bc.roundId+=1; bc.timer=30; bc.locked=false; bc.rolling=false; bc.myBet={side:null,amount:0};
   document.getElementById('bcTimerNum').textContent='30';
+  document.getElementById('playerCards').innerHTML = '';
+  document.getElementById('bankerCards').innerHTML = '';
+  document.getElementById('playerTotal').textContent = '-';
+  document.getElementById('bankerTotal').textContent = '-';
   bcSetLockedUI(false); bcRenderAll();
 }
 document.getElementById('btnPlayer').onclick=function(){ bcPlaceBet('player'); };
